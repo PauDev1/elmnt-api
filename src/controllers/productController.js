@@ -1,9 +1,12 @@
 import Product from '../models/Product.js';
+import sanitize from 'mongo-sanitize';
 
 //VER TODOS LOS PRODUCTOS
 export const getProducts = async (req, res) => {
     try {
-        const { category, name } = req.query;
+        const cleanQuery = sanitize(req.query);
+        const { category, name } = cleanQuery;
+        
         let query = {};
 
         if (category) {
@@ -15,13 +18,13 @@ export const getProducts = async (req, res) => {
         }
 
         const products = await Product.find(query);
-
         res.json(products);
 
     } catch (error) {
         res.status(500).json({ message: "Error al obtener productos", error: error.message });
     }
 };
+
 
 //VER UN PRODUCTO
 export const getProductById = async (req, res) => {
@@ -37,15 +40,12 @@ export const getProductById = async (req, res) => {
 // CREAR PRODUCTO
 export const createProduct = async (req, res) => {
     try {
-        const newProduct = new Product(req.body);
+        const cleanBody = sanitize(req.body);
+        const newProduct = new Product(cleanBody);
         const savedProduct = await newProduct.save();
         res.status(201).json(savedProduct);
     } catch (error) {
-        const message = error.errors
-            ? Object.values(error.errors)[0].message
-            : 'Error al crear el producto';
-
-        res.status(400).json({ mensaje: message });
+        res.status(400).json({ mensaje: 'Error al guardar en la base de datos' });
     }
 };
 
@@ -86,3 +86,4 @@ export const deleteProduct = async (req, res) => {
         res.status(400).json({ mensaje: 'Error al eliminar', error });
     }
 };
+
