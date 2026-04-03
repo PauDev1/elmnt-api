@@ -1,6 +1,6 @@
 import express from 'express';
 import { protect } from '../middleware/authMiddleware.js';
-import { validateProductQuery, validateProductBody } from '../middleware/productValidation.js'; 
+import { validateProductQuery, validateProductBody, validateProductId } from '../middleware/productValidation.js'; 
 
 import {
     getProducts,
@@ -14,9 +14,9 @@ const router = express.Router();
 
 router.get('/', validateProductQuery, getProducts);
 
-router.get('/:id', getProductById);
+router.get('/:id', validateProductId,getProductById);
 router.post('/', protect, validateProductBody, createProduct);    
-router.put('/:id', protect, validateProductBody, updateProduct);  
-router.delete('/:id', protect, deleteProduct); 
+router.put('/:id', protect, validateProductId, validateProductBody, updateProduct);  
+router.delete('/:id', protect, validateProductId, deleteProduct); 
 
 export default router;

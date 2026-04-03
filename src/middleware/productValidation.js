@@ -44,3 +44,17 @@ export const validateProductBody = (req, res, next) => {
     }
     next();
 };
+
+export const validateProductId = (req, res, next) => {
+    const schema = Joi.string().hex().length(24).required();
+
+    const { error } = schema.validate(req.params.id);
+
+    if (error) {
+        return res.status(400).json({ 
+            mensaje: 'El ID del producto no es válido', 
+            detalle: 'Debe ser un código hexadecimal de 24 caracteres.' 
+        });
+    }
+    next();
+};
