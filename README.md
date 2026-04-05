@@ -34,12 +34,30 @@ Se enfocó en la **escalabilidad** y la **integridad de los datos**, asegurando 
 * **Logs:** Morgan (dev mode)
 
 ---
+##  Estructura del Proyecto
+
+```text
+backend/
+├── src/
+│   ├── controllers/      # Lógica de manejo de peticiones (Auth, Products)
+│   ├── middleware/       # Validaciones Joi y verificación de JWT
+│   ├── models/           # Esquemas de Mongoose (User, Product)
+│   ├── routes/           # Definición de endpoints de la API
+│   ├── app.js            # Configuración de Express y Middlewares
+│   └── index.js          # Punto de entrada y conexión a la DB
+├── .env                  # Variables sensibles (No incluido en Git)
+├── .env.example          # Plantilla de variables de entorno
+├── .gitignore            # Archivos excluidos del repositorio
+├── package.json          # Dependencias y scripts del proyecto
+└── README.md             # Documentación del sistema
+```
+---
 
 ##  Instalación y Configuración
 
 1.  **Clonar el repositorio:**
     ```bash
-    git clone [URL-del-repo]
+    git clone https://github.com/PauDev1/elmnt-api.git
     ```
 2.  **Instalar dependencias:**
     
