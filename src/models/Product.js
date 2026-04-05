@@ -27,10 +27,8 @@ const productSchema = new mongoose.Schema({
   image: {
     type: String,
     required: [true, 'La URL de la imagen es obligatoria'],
-    //match: [/^https?:\/\/.+/, 'La imagen debe ser una URL válida'] 
     validate: {
       validator: function (v) {
-        // Verifica que el link empiece con el dominio de Cloudinary
         return /^https?:\/\/res\.cloudinary\.com\/.+/.test(v);
       },
       message: props => `${props.value} No es un enlace válido de Cloudinary`
