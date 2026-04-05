@@ -1,17 +1,25 @@
 {
-  "name": "backend",
+  "name": "elmnt-backend",
   "type": "module",
   "version": "1.0.0",
-  "description": "",
+  "description": "REST API for ELMNT skincare ecommerce, built with Node.js, Express, and MongoDB.",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "node",
+    "express",
+    "mongodb",
+    "mongoose",
+    "rest-api",
+    "skincare",
+    "ecommerce-backend",
+    "jwt"],
+  "author": "Paola Lizarriba (https://pao-portfolio.vercel.app/)",
+  "license": "MIT",
   "packageManager": "pnpm@10.33.0",
   "dependencies": {
     "bcryptjs": "^3.0.3",
