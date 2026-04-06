@@ -26,6 +26,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(morgan('dev'));
 app.use(express.json());
+app.get('/health', (req, res) => {
+  res.status(200).send('Server is alive and kicking');
+});
 app.use('/api/products', productRoutes);
 app.use('/api/auth', authRoutes);
 
